@@ -1,0 +1,31 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Mageglob\Customerstatus\Block\UpdateStatus $block */
+?>
+<form class="form contact"
+      action="<?= $block->escapeUrl($block->getAction()) ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+      
+        <fieldset class="fieldset">
+            <?= $block->getBlockHtml('formkey') ?>
+           <div class="field status">
+            <label class="label" for="telephone"><span>Status</span></label>
+            <div class="control">
+                <input name="status" id="status" title="Status" value="" class="input-text" type="text" data-validate="{required:true}">
+            </div>
+        </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary"><button type="submit" title="<?= $block->escapeHtmlAttr(__('Save')) ?>" class="action save primary"><span><?= $block->escapeHtml(__('Save')) ?></span></button></div>
+           
+        </div>
+    </form>

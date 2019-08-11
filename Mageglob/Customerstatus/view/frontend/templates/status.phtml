@@ -1,0 +1,18 @@
+
+<div id="status-header" data-bind="scope: 'status'">
+    <span data-bind="text: status().active"></span>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "status": {
+                    "component": "Mageglob_Customerstatus/js/status"
+                }
+            }
+        }
+    }
+}
+</script>
