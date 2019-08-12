@@ -10,9 +10,6 @@ use Magento\Customer\Model\CustomerFactory as CustomerFactory;
  */
 class Status extends \Magento\Framework\DataObject implements SectionSourceInterface
 {
-    /**
-     * @var \Magento\Customer\Helper\Session\CurrentCustomer
-     */
     protected $currentCustomer;
 
      /**
@@ -21,28 +18,41 @@ class Status extends \Magento\Framework\DataObject implements SectionSourceInter
     protected $customerFactory;
 
     /**
+     * @var \Magento\Customer\Model\Session
+     */
+    protected $_customerSession;
+
+    /**
      * Initialize dependencies.
      *
      * @param CustomerFactory $CustomerFactory
      */
     public function __construct(
         CurrentCustomer $currentCustomer,
-        CustomerFactory $customerFactory
+        CustomerFactory $customerFactory,
+        \Magento\Customer\Model\Session $_customerSession
     ) {
         $this->currentCustomer = $currentCustomer;
         $this->customerFactory = $customerFactory->create();
+        $this->_customerSession = $_customerSession;
     }
 
     public function getSectionData() {
-        $customerId = $this->currentCustomer->getCustomer()->getId();
-        if ($customerId === null) {
+        if ($this->_customerSession->isLoggedIn()) {
+            $customerId = $this->currentCustomer->getCustomer()->getId();
+            if ($customerId === null) {
+                return [
+                    'active' => ''
+                ];
+            } else {
+                $customer = $this->customerFactory->load($customerId);
+                return [
+                    'active' => $customer->getNewStatus()
+                ];
+            }
+        } else{
             return [
                 'active' => ''
-            ];
-        } else {
-            $customer = $this->customerFactory->load($customerId);
-            return [
-                'active' => $customer->getNewStatus()
             ];
         }
            
