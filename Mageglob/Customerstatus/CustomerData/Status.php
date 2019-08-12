@@ -10,6 +10,9 @@ use Magento\Customer\Model\CustomerFactory as CustomerFactory;
  */
 class Status extends \Magento\Framework\DataObject implements SectionSourceInterface
 {
+    /**
+     * @var \Magento\Customer\Helper\Session\CurrentCustomer
+     */
     protected $currentCustomer;
 
      /**

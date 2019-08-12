@@ -6,6 +6,10 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+       <!-- for css file -->
+       <css src="Mageglob_Customerstatus::css/status.css"/>
+</head>
     <body>
         <referenceBlock name="top.links">
             <block class="Mageglob\Customerstatus\Block\Link" name="update-status-link" after="wish-list-link">
@@ -15,7 +19,11 @@
             </block>
         </referenceBlock>
         <referenceContainer name="header.panel">
-            <block class="Magento\Framework\View\Element\Template" template="Mageglob_Customerstatus::status.phtml" after="top.links" cacheable="false"/>
+            <block class="Magento\Framework\View\Element\Template" template="Mageglob_Customerstatus::status.phtml"  cacheable="false"/>
+
+          <!-- if need this block in last in structure than use below code and comment above line
+          <block class="Magento\Framework\View\Element\Template" template="Mageglob_Customerstatus::status.phtml"  after="-" cacheable="false"/>
+      -->
         </referenceContainer>
     </body>
 </page>

@@ -21,7 +21,11 @@ class Save extends \Mageglob\Customerstatus\Controller\Manage implements HttpPos
      */
     protected $formKeyValidator;
 
+    /**
+     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     */
     protected $_customerRepositoryInterface;
+    
 
     /**
      * Initialize dependencies.
